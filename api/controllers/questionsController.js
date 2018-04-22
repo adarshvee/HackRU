@@ -12,7 +12,13 @@ exports.list_all_questions = function(req, res) {
   });
 };
 
-
+exports.read_all_questionIds = function(req, res) {
+  Question.find({},'_id', function(err, new_q) {
+    if (err)
+      res.send(err);
+    res.json(new_q);
+  });
+}
 
 
 exports.create_a_question = function(req, res) {
