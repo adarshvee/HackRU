@@ -2,7 +2,7 @@
 
 
 var mongoose = require('mongoose'),
- Question = mongoose.model('Question');
+Question = mongoose.model('Question');
 
 exports.list_all_questions = function(req, res) {
   Question.find({}, function(err, new_q) {
@@ -16,6 +16,7 @@ exports.read_all_questionIds = function(req, res) {
   Question.find({},'_id', function(err, new_q) {
     if (err)
       res.send(err);
+    console.log(new_q);
     res.json(new_q);
   });
 }
@@ -26,17 +27,18 @@ exports.create_a_question = function(req, res) {
   new_q.save(function(err, new_q) {
     if (err)
       res.send(err);
-    res.json(new_q);
+      res.json(new_q);
   });
 };
 
 
 exports.read_a_question = function(req, res) {
+  //var _id = mongoose.Types.ObjectId.fromString(req);
   Question.findById(req.params.qId, function(err, new_q) {
     if (err)
       res.send(err);
     res.json(new_q);
-  });
+  }).select("-createddate");
 };
 
 

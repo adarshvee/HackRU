@@ -25,6 +25,6 @@ var QuestionSchema = new Schema({
       }
     }]
 
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Question', QuestionSchema);

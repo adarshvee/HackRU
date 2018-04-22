@@ -22,6 +22,6 @@ var AnswerSchema = new Schema({
     currCareer : {
       type: String
     }
-});
+}, { versionKey: false });
 
 module.exports = mongoose.model('Answer', AnswerSchema);
